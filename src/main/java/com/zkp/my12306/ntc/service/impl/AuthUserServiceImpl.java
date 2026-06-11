@@ -6,11 +6,13 @@ import com.zkp.my12306.ntc.entity.NtcUserEntity;
 import com.zkp.my12306.ntc.mapper.NtcUserMapper;
 import com.zkp.my12306.ntc.service.AuthUserService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Optional;
 
 @Service
+@Transactional
 public class AuthUserServiceImpl implements AuthUserService {
 
     private final NtcUserMapper ntcUserMapper;

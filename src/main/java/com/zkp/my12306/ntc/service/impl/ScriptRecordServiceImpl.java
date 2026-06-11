@@ -14,6 +14,7 @@ import com.zkp.my12306.ntc.script.record.ScriptRecordValidationException;
 import com.zkp.my12306.ntc.service.ScriptRecordService;
 import com.zkp.my12306.ntc.service.ScriptWorkService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
@@ -23,6 +24,7 @@ import java.util.HexFormat;
 import java.util.List;
 
 @Service
+@Transactional
 public class ScriptRecordServiceImpl implements ScriptRecordService {
 
     private final ScriptRecordMapper scriptRecordMapper;

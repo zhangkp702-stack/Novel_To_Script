@@ -3,6 +3,7 @@ package com.zkp.my12306.ntc;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.mybatis.spring.annotation.MapperScan;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 @SpringBootApplication
 @MapperScan({
@@ -10,6 +11,7 @@ import org.mybatis.spring.annotation.MapperScan;
         "com.zkp.my12306.ntc.llm.dao.mapper",
         "com.zkp.my12306.ntc.script.dao.mapper"
 })
+@EnableTransactionManagement
 public class TestApplication {
 
     public static void main(String[] args) {

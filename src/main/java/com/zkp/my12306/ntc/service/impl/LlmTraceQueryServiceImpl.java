@@ -15,11 +15,13 @@ import com.zkp.my12306.ntc.script.record.ScriptRecordValidationException;
 import com.zkp.my12306.ntc.service.LlmTraceQueryService;
 import com.zkp.my12306.ntc.service.ScriptWorkService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
 import java.util.List;
 
 @Service
+@Transactional(readOnly = true)
 public class LlmTraceQueryServiceImpl implements LlmTraceQueryService {
 
     private final LlmTraceRunMapper traceRunMapper;

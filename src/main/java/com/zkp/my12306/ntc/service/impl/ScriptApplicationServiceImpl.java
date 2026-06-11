@@ -20,7 +20,6 @@ import com.zkp.my12306.ntc.script.prompt.ScriptPromptBuilder;
 import com.zkp.my12306.ntc.script.stream.StreamDegenerationGuard;
 import com.zkp.my12306.ntc.script.dao.entity.ScriptWorkDO;
 import com.zkp.my12306.ntc.script.validate.ScriptSchemaValidator;
-import com.zkp.my12306.ntc.script.dao.entity.ScriptWorkDO;
 import com.zkp.my12306.ntc.service.CharacterService;
 import com.zkp.my12306.ntc.service.ScriptApplicationService;
 import com.zkp.my12306.ntc.service.ScriptWorkService;
@@ -28,6 +27,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.MediaType;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.web.servlet.mvc.method.annotation.SseEmitter;
 
 import java.io.IOException;
@@ -39,6 +39,7 @@ import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.concurrent.atomic.AtomicReference;
 
 @Service
+@Transactional
 public class ScriptApplicationServiceImpl implements ScriptApplicationService {
 
     private static final Logger log = LoggerFactory.getLogger(ScriptApplicationServiceImpl.class);

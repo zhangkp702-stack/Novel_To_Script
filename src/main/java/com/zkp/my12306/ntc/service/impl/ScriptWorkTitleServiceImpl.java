@@ -8,8 +8,10 @@ import com.zkp.my12306.ntc.script.record.ScriptRecordValidationException;
 import com.zkp.my12306.ntc.service.ScriptWorkService;
 import com.zkp.my12306.ntc.service.ScriptWorkTitleService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@Transactional
 public class ScriptWorkTitleServiceImpl implements ScriptWorkTitleService {
 
     private static final int MIN_EXCERPT_LENGTH = 20;

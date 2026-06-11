@@ -17,6 +17,7 @@ import com.zkp.my12306.ntc.script.record.ScriptWorkAccessDeniedException;
 import com.zkp.my12306.ntc.script.record.ScriptWorkNotFoundException;
 import com.zkp.my12306.ntc.service.ScriptWorkService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
@@ -27,6 +28,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class ScriptWorkServiceImpl implements ScriptWorkService {
 
     private static final String UNTITLED_WORK_LABEL = "未命名作品";

@@ -12,6 +12,7 @@ import com.zkp.my12306.ntc.script.record.ScriptRecordValidationException;
 import com.zkp.my12306.ntc.service.CharacterService;
 import com.zkp.my12306.ntc.service.ScriptWorkService;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.time.LocalDateTime;
 import java.util.Comparator;
@@ -19,6 +20,7 @@ import java.util.List;
 import java.util.UUID;
 
 @Service
+@Transactional
 public class CharacterServiceImpl implements CharacterService {
 
     private static final int NAME_MAX_LENGTH = 128;
