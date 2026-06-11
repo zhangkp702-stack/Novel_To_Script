@@ -1,0 +1,74 @@
+HELP.md
+
+### Maven ###
+target/
+.mvn/wrapper/maven-wrapper.jar
+!**/src/main/**/target/
+!**/src/test/**/target/
+
+### Environment / Secrets ###
+.env
+.env.*
+!.env.example
+application-local.yml
+application-local.yaml
+application-dev-local.yml
+application-dev-local.yaml
+
+### Logs ###
+logs/
+*.log
+hs_err_pid*.log
+
+### Java ###
+*.class
+out/
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea/
+*.iws
+*.iml
+*.ipr
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+build/
+!**/src/main/**/build/
+!**/src/test/**/build/
+
+### VS Code ###
+.vscode/
+
+### Cursor ###
+.cursor/skills/
+
+### Frontend ###
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+frontend/*.tsbuildinfo
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+frontend/.npm/
+frontend/.pnpm-store/
+
+### OS ###
+.DS_Store
+Thumbs.db
+
+### Local Prompt ###
+_prompt_head.md

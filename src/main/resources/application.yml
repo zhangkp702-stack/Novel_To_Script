@@ -1,0 +1,118 @@
+server:
+  servlet:
+    encoding:
+      enabled: true
+      force: true
+
+spring:
+  application:
+    name: test
+  mvc:
+    async:
+      request-timeout: 300000
+  datasource:
+    url: jdbc:mysql://192.168.126.100:3306/NTS_user?useUnicode=true&characterEncoding=UTF-8&serverTimezone=Asia/Shanghai&useSSL=false&allowPublicKeyRetrieval=true
+    username: root
+    password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  data:
+    redis:
+      host: 192.168.126.100
+      port: 6379
+      password: 123456
+  servlet:
+    encoding:
+      charset: UTF-8
+
+auth:
+  session:
+    use-redis: true
+    ttl-seconds: 7200
+
+ai:
+  providers:
+    siliconflow:
+      url: https://api.siliconflow.cn
+      api-key: ${SILICONFLOW_API_KEY:}
+      endpoints:
+        chat: /v1/chat/completions
+    deepseek:
+      url: https://api.deepseek.com
+      api-key: ${DEEPSEEK_API_KEY:}
+      endpoints:
+        chat: /v1/chat/completions
+    ollama:
+      url: http://127.0.0.1:11434
+      endpoints:
+        chat: /v1/chat/completions
+    openai:
+      url: https://api.openai.com
+      api-key: ${OPENAI_API_KEY:}
+      endpoints:
+        chat: /v1/chat/completions
+    bailian:
+      url: https://dashscope.aliyuncs.com
+      api-key: ${BAILIAN_API_KEY:}
+      endpoints:
+        chat: /compatible-mode/v1/chat/completions
+  selection:
+    failure-threshold: 2
+    open-duration-ms: 30000
+    # DeepSeek 等大模型首 token 常超过 8s，过短会误判超时
+    first-token-timeout-ms: 60000
+    connect-timeout-ms: 10000
+    request-timeout-ms: 300000
+  generation:
+    # 兼顾完整度与格式稳定：足够写细节，又避免过长输出退化
+    max-tokens: 16144
+    temperature: 0.1
+    frequency-penalty: 0.0
+    presence-penalty: 0.0
+  stream-executor:
+    core-size: 4
+    max-size: 16
+    queue-capacity: 200
+    keep-alive-seconds: 60
+    thread-name-prefix: llm-stream-
+    rejection-policy: caller-runs
+  chat:
+    # default-model: 首选模型 id；candidates[].enabled: 开关；priority 越小越优先
+    # 剧本生成优先用格式遵循更稳的 DeepSeek
+    default-model: siliconflow-qwen-primary
+    candidates:
+      - id: siliconflow-qwen-primary
+        provider: siliconflow
+        model: deepseek-ai/DeepSeek-V4-Pro
+        priority: 1
+        enabled: true
+      - id: siliconflow-primary
+        provider: siliconflow
+        # 须与 SiliconFlow 控制台模型 ID 完全一致，见 https://cloud.siliconflow.cn/models
+        model: Qwen/Qwen2.5-14B-Instruct
+        priority: 2
+        enabled: true
+      - id: deepseek-backup
+        provider: deepseek
+        model: deepseek-chat
+        priority: 3
+        enabled: false
+      - id: ollama-local
+        provider: ollama
+        model: "qwen2.5:7b"
+        priority: 4
+        enabled: false
+      - id: openai-gpt4o-mini
+        provider: openai
+        model: gpt-4o-mini
+        priority: 5
+        enabled: false
+      - id: bailian-qwen-plus
+        provider: bailian
+        model: qwen-plus-latest
+        priority: 6
+        enabled: false
+
+llm:
+  trace:
+    enabled: true
+    max-error-length: 1000
